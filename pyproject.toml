@@ -7,8 +7,11 @@ authors = ["pistatium"]
 [tool.poetry.dependencies]
 python = "^3.8"
 tweepy = "^4.5.0"
+fastapi = "^0.74.1"
+Jinja2 = "^3.0.3"
 
 [tool.poetry.dev-dependencies]
+uvicorn = "^0.17.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

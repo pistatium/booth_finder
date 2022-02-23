@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+
+    <title>BoothFinder</title>
+    <meta name="description" content="BoothFinder">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ノアの休日#2 booth finder">
+    <meta name="twitter:description" content="{{screen_name}}さんがフォローしている方のブース出展状況">
+</head>
+<body>
+<style>
+    .booth{
+        display: flex;
+        margin: 12px;
+    }
+    .location {
+        font-weight: bold;
+        padding-right: 12px;
+    }
+    .user {
+
+    }
+    .user a {
+        font-size: 80%;
+    }
+</style>
+<h1>ノアの休日#2</h1>
+
+<form method="get" action="/noah2">
+    <div>
+        Twitterの @ 以降の文字を指定して、ユーザーがフォローしているブース出展状況と場所を調べられます.
+    </div>
+    <input type="text" name="screen_name" value="{{screen_name}}" placeholder="Twitterスクリーンネーム">
+    <input type="submit" value="検索">
+</form>
+
+{% if screen_name %}
+    <h2>@{{screen_name}}さんがフォローしている方のブース一覧</h2>
+    {% for booth in booth_list %}
+        <div class="booth">
+            <div class="location">
+                {{booth.info.pos_kan}} {{booth.info.pos_hiragana}}{{booth.info.pos_number}}
+            </div>
+            <div class="user">
+                <div>
+                    {{booth.user.display_name}}
+                </div>
+                <div>
+                    <a href="https://twitter.com/{{booth.user.screen_name}}">https://twitter.com/{{booth.user.screen_name}}</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div>
+この情報は以下を元に作成しています:
+<a href="https://twitter.com/arknights_only/status/1483741019292114946">https://twitter.com/arknights_only/status/1483741019292114946</a>
+</div>
+
+</body>
+</html>
